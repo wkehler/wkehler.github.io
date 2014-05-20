@@ -1,0 +1,31 @@
+<!doctype html>
+
+<html>
+
+ <head>
+
+ <title>May 11 Assignments Part 2</title>
+
+ <script type="text/javascript">
+
+ function putEmTogether() {
+
+ alert(box1.value + box2.value);
+
+ }
+
+ </script>
+
+ </head>
+
+ <body>
+
+ <input type="text" id="box1" />
+
+ <input type="text" id="box2" />
+
+ <button onclick="putEmTogether();">Put 'em together!</button>
+
+ </body>
+
+</html>
