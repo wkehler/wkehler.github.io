@@ -1,0 +1,70 @@
+<!doctype html>
+<html>  
+<head>    
+<title>Cipher Example</title>    
+<script type="text/javascript">  
+
+/**       
+* This function is called when the encrypt button is pressed. It loops over the       
+* letters of the ciphertext and tries to encrypt them by calling encrypt_character.       
+*/      
+function encrypt() {        
+var input = plaintext.value.toUpperCase();        
+var myAdder = parseInt(adder.value);        
+var myMultiplier = parseInt(multiplier.value);   
+
+var output = "";        
+for (var i = 0; i < input.length; i = i + 1) {          
+output+= encrypt_character(input[i], myAdder, myMultiplier);          
+// WORK:          
+// Call encrypt_character with the arguments input[i], myAdder, myMultiplier          
+// and concatenate the returned value to output.        
+
+}        
+ciphertext.value = output;      
+}
+/**       
+* Given a character, an adder, and a multiplier, *encrypt* the character using       
+* the adder and the multiplier. E.g.,       
+*       
+* encrypt_character("B", 3, 9) should return "E" since       
+* . "B" -> 1 as a plaintext character,       
+* . 1 * 3 = 3       
+* . 3 + 9 = 12       
+* . 12 % 26 = 12       
+* . 12 -> "M"       
+*       
+* Note that this differs from decrypt_character in the order of operations performed!       
+*/      
+function encrypt_character(character, myAdder, myMultiplier) {        
+if (!isAlpha(character)) {          
+return character;        
+}       
+var transformedCharCode = -1;        
+transformedCharCode = characterToNumber(character)-65;        
+transformedCharCode *= myMultiplier;        
+transformedCharCode += myAdder;        
+transformedCharCode = transformedCharCode %26;        
+transformedCharCode += 65;                
+// WORK:        
+// Encrypt the character. Remember that "A" -> 65 in ASCII, so you'll first need to subtract        
+// characterToNumber("A") and then add it back in before calling numberToCharacter.        
+return numberToCharacter(transformedCharCode);      
+}      
+/**       
+* This function is called when the decrypt button is pressed. It loops over the       
+* letters of the ciphertext and tries to decrypt them by calling decrypt_character.       
+*/      
+function decrypt() {        
+var input = ciphertext.value.toUpperCase();        
+var myAdder = parseInt(adder.value);        
+var myMultiplier = parseInt(multiplier.value);        
+var output = "";        
+for (var i = 0; i < input.length; i = i + 1) {          
+output+= decrypt_character(input[i], myAdder, myMultiplier);          
+// WORK:          
+// Call decrypt_character with the arguments input[i], myAdder, myMultiplier          
+// and concatenate the returned value to output.        
+}        
+plaintext.value = output;      
+}
